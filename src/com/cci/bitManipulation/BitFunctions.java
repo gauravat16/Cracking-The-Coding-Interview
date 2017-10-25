@@ -33,6 +33,15 @@ public class BitFunctions {
         return number&((1<<position) -1);
     }
 
+    static int updateBits(int number, int val,int position){
+        int value = isOne(String.valueOf(val))?1:0;
+
+        int mask=~(1<<position);
+        return number & mask | (value<<position);
+    }
+
+
+
 
 
 
@@ -50,12 +59,13 @@ public class BitFunctions {
 
 
 
-//    public static void main(String[] args) {
-//        System.out.println(getBit(5, 2));
-//        System.out.println(setBit(5,1));
-//        System.out.println(clearBitAtPositon(5,0));
-//        System.out.println(clearBitsAfterPostion(5,2));
-//        System.out.println(clearBitsBeforePostion(5,1));
-//
-//    }
+    public static void main(String[] args) {
+        System.out.println(getBit(5, 2));
+        System.out.println(setBit(5,1));
+        System.out.println(clearBitAtPositon(5,0));
+        System.out.println(clearBitsAfterPostion(5,2));
+        System.out.println(clearBitsBeforePostion(5,1));
+        System.out.println(updateBits(5,0,1));
+
+    }
 }
