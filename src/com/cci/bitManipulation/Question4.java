@@ -46,19 +46,20 @@ public class Question4 {
 
         int mask=((~0<<switchBitPosition+1));
         number&=mask;
-        mask=((1<<trailingOnes)-1);
-        number|=mask << (trailingZeros-trailingOnes);
+        mask=((1<<trailingOnes+1)-1);
+        number|=mask << (trailingZeros-1);
         return number;
 
     }
 
 
     public static void main(String[] args) {
-        System.out.println(Integer.toBinaryString(101));
+        System.out.println(Integer.toBinaryString(137));
         System.out.println(Integer.toBinaryString(~0));
 
-        System.out.println(Integer.toBinaryString(closestLargest(101)));
-        System.out.println(Integer.toBinaryString(closestSmallest(101)));
+        System.out.println(Integer.toBinaryString(closestLargest(137)));
+        System.out.println(Integer.toBinaryString(closestSmallest(137)));
+        System.out.println(closestSmallest(137));
 
     }
 }
