@@ -7,15 +7,8 @@ public class Permutations {
 
     public static void main(String[] args) {
 
-        ArrayList<String> data = getPermutations("abcd",0);
-        HashSet<String> set = new HashSet<>();
-        for (String s : data){
-            if(s.length()==4){
-                set.add(s);
-            }
-        }
-
-        System.out.println(set);
+        ArrayList<String> data = getPermutations("abcd", 0);
+        System.out.println(data);
 
 
     }
@@ -33,7 +26,7 @@ public class Permutations {
 
 
         for (String p : permutations) {
-            for (int i = 0; i < p.length() +1; i++) {
+            for (int i = 0; i < p.length() + 1; i++) {
                 if (i == 0) {
                     tempList.add(s.charAt(index) + p);
 
@@ -41,14 +34,13 @@ public class Permutations {
                     tempList.add(p + s.charAt(index));
 
                 } else {
-                    tempList.add(p.substring(0, i - 1) + s.charAt(index) + p.substring(i, p.length()));
+                    tempList.add(p.substring(0, i) + s.charAt(index) + p.substring(i, p.length()));
 
                 }
             }
         }
         permutations = tempList;
 
-        permutations.addAll(tempList);
         return permutations;
     }
 }
