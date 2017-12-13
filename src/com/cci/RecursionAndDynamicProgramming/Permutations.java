@@ -1,12 +1,21 @@
 package com.cci.RecursionAndDynamicProgramming;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Permutations {
 
     public static void main(String[] args) {
 
-        System.out.println(getPermutations("abcd", 0));
+        ArrayList<String> data = getPermutations("abcd",0);
+        HashSet<String> set = new HashSet<>();
+        for (String s : data){
+            if(s.length()==4){
+                set.add(s);
+            }
+        }
+
+        System.out.println(set);
 
 
     }
@@ -28,7 +37,7 @@ public class Permutations {
                 if (i == 0) {
                     tempList.add(s.charAt(index) + p);
 
-                } else if (i > p.length()) {
+                } else if (i >= p.length()) {
                     tempList.add(p + s.charAt(index));
 
                 } else {
