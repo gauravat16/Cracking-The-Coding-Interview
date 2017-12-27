@@ -7,7 +7,7 @@ public class Permutations {
 
     public static void main(String[] args) {
 
-        ArrayList<String> data = getPermutations("abcd", 0);
+        ArrayList<String> data = getPermutations("aaaaaaaaaaaaaaa", 0);
         System.out.println(data);
 
 
@@ -39,7 +39,8 @@ public class Permutations {
                 }
             }
         }
-        permutations = tempList;
+        HashSet<String> tempset = new HashSet<>(tempList);
+        permutations = new ArrayList<>(tempset);
 
         return permutations;
     }
