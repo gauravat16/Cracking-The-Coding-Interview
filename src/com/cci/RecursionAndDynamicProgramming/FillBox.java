@@ -45,7 +45,7 @@ public class FillBox {
 }
 
 
-class Pixel {
+ class Pixel {
 
     private int x, y;
 
@@ -69,4 +69,12 @@ class Pixel {
     public void setY(int y) {
         this.y = y;
     }
-}
+
+     @Override
+     public String toString() {
+         return "Pixel{" +
+                 "x=" + x +
+                 ", y=" + y +
+                 '}';
+     }
+ }

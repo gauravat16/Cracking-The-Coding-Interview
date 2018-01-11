@@ -8,7 +8,7 @@ public class ChangeCalc {
 
     public static void main(String[] args) {
         int ways = 0;
-        int change =6;
+        int change =25;
         int[] changes = {25,10,5,1};
 
         HashMap<Integer,Integer> map = new HashMap<>();
@@ -18,10 +18,10 @@ public class ChangeCalc {
     }
 
     static int changeCalculator(int change, int ways, Map<Integer,Integer> changeWaysRegister,int[] changes){
-
-        if (changeWaysRegister.containsKey(change)){
-            return changeWaysRegister.get(change);
-        }
+//
+//        if (changeWaysRegister.containsKey(change)){
+//            return changeWaysRegister.get(change);
+//        }
 
         if(change==0){
             ways++;
@@ -31,12 +31,18 @@ public class ChangeCalc {
         }
 
         for (int denom : changes){
-            ways = changeCalculator(change-denom,ways,changeWaysRegister,changes);
-//            if(changeWaysRegister.containsKey(change) && ways>changeWaysRegister.get(change)){
-//                changeWaysRegister.put(change,ways);
-//            }else {
-//                changeWaysRegister.put(change,ways);
-//            }
+            if(change-denom>=0){
+                int tempways = changeCalculator(change-denom,0,changeWaysRegister,changes);
+                if(changeWaysRegister.containsKey(change) && tempways>changeWaysRegister.get(change)){
+                    changeWaysRegister.put(change,tempways);
+                }else {
+                    changeWaysRegister.put(change,tempways);
+                }
+
+
+                ways+=tempways;
+            }
+
 
 
         }
