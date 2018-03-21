@@ -65,10 +65,14 @@ public class Node {
         this.childeren = childeren;
     }
 
+    public boolean isLeaf() {
+        return null == this.lChild && null == this.rChild;
+    }
+
     @Override
     public String toString() {
         return "data{" +
-                data+
+                data +
                 '}';
     }
 }
