@@ -205,12 +205,62 @@ public class BinarySearchTree implements ITree {
 
     @Override
     public String preorderTraversal(Node node, String treeData) {
-        return null;
+        if (null == node) {
+            return treeData;
+        }
+
+        if (node.isLeaf()) {
+            treeData = " " + node.data;
+            return treeData;
+
+
+        }
+        String leftData = "", rightData = "";
+        if (null != node.lChild) {
+            leftData = preorderTraversal(node.lChild, treeData);
+
+        }
+        treeData = node.data + " " + leftData;
+
+        if (null != node.rChild) {
+            rightData = preorderTraversal(node.rChild, treeData);
+
+        }
+
+        treeData += " " + rightData;
+
+
+        return treeData;
     }
 
     @Override
     public String postorderTraversal(Node node, String treeData) {
-        return null;
+        if (null == node) {
+            return treeData;
+        }
+
+        if (node.isLeaf()) {
+            treeData = " " + node.data;
+            return treeData;
+
+
+        }
+        String leftData = "", rightData = "";
+        if (null != node.lChild) {
+            leftData = postorderTraversal(node.lChild, treeData);
+
+        }
+        treeData = leftData;
+
+        if (null != node.rChild) {
+            rightData = postorderTraversal(node.rChild, treeData);
+
+        }
+
+        treeData += " " + rightData + " " + node.data + " ";
+
+
+        return treeData;
     }
 
     @Override
@@ -266,6 +316,8 @@ public class BinarySearchTree implements ITree {
         System.out.println(binaryTree.search(ITree.DEPTH_FIRST, 52));
 
         System.out.println(binaryTree.traverseTree(IN_ORDER));
+        System.out.println(binaryTree.traverseTree(PRE_ORDER));
+        System.out.println(binaryTree.traverseTree(POST_ORDER));
 
     }
 
