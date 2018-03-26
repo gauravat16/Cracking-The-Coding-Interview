@@ -27,6 +27,11 @@ public class BinaryTree implements ITree {
     }
 
     @Override
+    public String traverseTree(int mode) {
+        return null;
+    }
+
+    @Override
     public Node depthFirstSearch(Integer data, Node Node) {
         return null;
     }
@@ -76,5 +81,20 @@ public class BinaryTree implements ITree {
     @Override
     public int getRank(Integer data, Node node) {
         return 0;
+    }
+
+    @Override
+    public String preorderTraversal(Node node, String treeData) {
+        return null;
+    }
+
+    @Override
+    public String postorderTraversal(Node node, String treeData) {
+        return null;
+    }
+
+    @Override
+    public String inorderTraversal(Node node, String treeData) {
+        return null;
     }
 }

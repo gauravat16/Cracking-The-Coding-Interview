@@ -2,8 +2,11 @@ package com.cci.trees.implemenation;
 
 public interface ITree {
 
-    int BREADTH_FIRST=0;
-    int DEPTH_FIRST=1;
+    int BREADTH_FIRST = 0;
+    int DEPTH_FIRST = 1;
+    int IN_ORDER = 1;
+    int POST_ORDER = 2;
+    int PRE_ORDER = 3;
 
 
     boolean insert(Integer data, Node node);
@@ -29,6 +32,14 @@ public interface ITree {
     Node breadthFirstSearch(Integer data, Node node);
 
     Node search(Integer mode, Integer data);
+
+    String traverseTree(int mode);
+
+    String preorderTraversal(Node node, String treeData);
+
+    String postorderTraversal(Node node, String treeData);
+
+    String inorderTraversal(Node node, String treeData);
 
 
 }
