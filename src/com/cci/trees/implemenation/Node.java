@@ -75,4 +75,13 @@ public class Node {
                 data +
                 '}';
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Node tempNode = new Node(this.getData());
+        tempNode.setParent(this.parent);
+        tempNode.setlChild(this.lChild);
+        tempNode.setrChild(this.rChild);
+        return tempNode;
+    }
 }
