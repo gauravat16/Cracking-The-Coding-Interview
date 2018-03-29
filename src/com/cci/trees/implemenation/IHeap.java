@@ -2,18 +2,23 @@ package com.cci.trees.implemenation;
 
 public interface IHeap {
 
-    void setRoot(Node root);
-
-    Node getRoot();
-
     boolean insert(Integer value);
 
-    boolean insertFix(Node node);
+    void heapify(Integer node);
 
-    Node getMinNode();
+    void trickleDown(Integer node);
 
-    Node getMaxNode();
+    Integer getMinNode();
 
-    void swapNodes(Node n1, Node n2);
+    Integer getMaxNode();
+
+    void swap(Integer[] arr, int index1, int index2);
+
+    Integer[] getHeapdata();
+
+    void setHeapdata(Integer[] heapdata);
+
+    int getCurrentPos();
+
 
 }
