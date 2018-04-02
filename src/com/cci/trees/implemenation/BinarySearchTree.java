@@ -5,7 +5,7 @@ public class BinarySearchTree implements ITree {
     Node root = null;
 
     @Override
-    public boolean insert(Integer data, Node node) {
+    public Node insert(Integer data, Node node) {
 
 
         if (node.data >= data) {
@@ -17,7 +17,7 @@ public class BinarySearchTree implements ITree {
                 node.lChild.setParent(node);
                 node.setLeft_size(node.getLeft_size() + 1);
 
-                return true;
+                return node.lChild;
             }
         } else {
             if (node.rChild != null) {
@@ -25,7 +25,7 @@ public class BinarySearchTree implements ITree {
             } else {
                 node.rChild = new Node(data);
                 node.rChild.setParent(node);
-                return true;
+                return node.rChild;
             }
         }
 
@@ -33,12 +33,12 @@ public class BinarySearchTree implements ITree {
     }
 
     @Override
-    public boolean insert(Integer data) {
+    public Node insert(Integer data) {
         if (root == null) {
             root = new Node(data);
             root.setData(data);
             root.setParent(null);
-            return true;
+            return root;
         }
 
         return insert(data, root);
@@ -292,6 +292,11 @@ public class BinarySearchTree implements ITree {
 
 
         return treeData;
+    }
+
+    @Override
+    public void addChild(Node root, Node child) {
+
     }
 
     public static void main(String[] args) {

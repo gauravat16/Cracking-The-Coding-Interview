@@ -5,6 +5,16 @@ import java.util.List;
 
 public class Node {
 
+    public boolean isVisited() {
+        return isVisited;
+    }
+
+    public void setVisited(boolean visited) {
+        isVisited = visited;
+    }
+
+    private boolean isVisited = false;
+
     public int getLeft_size() {
         return left_size;
     }

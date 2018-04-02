@@ -11,9 +11,9 @@ public class BinaryTree implements ITree {
     }
 
     @Override
-    public boolean insert(Integer data, Node node) {
+    public Node insert(Integer data, Node node) {
 
-        return false;
+        return null;
     }
 
     @Override
@@ -47,12 +47,12 @@ public class BinaryTree implements ITree {
     }
 
     @Override
-    public boolean insert(Integer data) {
+    public Node insert(Integer data) {
         if (root == null) {
             root = new Node(data);
             root.setData(data);
             root.setParent(null);
-            return true;
+            return root;
         }
 
         return insert(data, root);
@@ -96,5 +96,10 @@ public class BinaryTree implements ITree {
     @Override
     public String inorderTraversal(Node node, String treeData) {
         return null;
+    }
+
+    @Override
+    public void addChild(Node root, Node child) {
+
     }
 }
