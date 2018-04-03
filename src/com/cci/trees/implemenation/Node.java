@@ -94,4 +94,14 @@ public class Node {
         tempNode.setrChild(this.rChild);
         return tempNode;
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        Node n2 = (Node) obj;
+        if (n2.getData().equals(this.getData())) {
+            return true;
+        }
+        return false;
+    }
 }
