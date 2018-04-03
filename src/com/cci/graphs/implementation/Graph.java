@@ -1,6 +1,10 @@
 package com.cci.graphs.implementation;
 
+import com.cci.queue.Queue;
 import com.cci.trees.implemenation.Node;
+
+import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class Graph implements IGraph {
 
@@ -64,7 +68,11 @@ public class Graph implements IGraph {
 
     @Override
     public Node breadthFirstSearch(Integer data) {
-        return null;
+        if (null == getRoot()) {
+            return null;
+        } else {
+            return breadthFirstSearch(data, getRoot());
+        }
     }
 
     @Override
@@ -91,6 +99,24 @@ public class Graph implements IGraph {
 
     @Override
     public Node breadthFirstSearch(Integer data, Node node) {
+
+        java.util.Queue<Node> nodeQueue = new LinkedList<>();
+
+        nodeQueue.add(node);
+
+        while (!nodeQueue.isEmpty()) {
+            Node tempNode = nodeQueue.remove();
+            if (tempNode.getData().equals(data)) {
+                return tempNode;
+            }
+            for (Node child : tempNode.getChilderen()) {
+                if (!child.isVisited()) {
+                    nodeQueue.add(child);
+                }
+            }
+        }
+
+
         return null;
     }
 
@@ -139,7 +165,8 @@ public class Graph implements IGraph {
         graph.addChild(n5, n3);
         graph.addChild(n1, n5);
 
-        System.out.println(graph.depthFirstSearch(5));
+//        System.out.println(graph.depthFirstSearch(5));
+        System.out.println(graph.breadthFirstSearch(5));
 
 
     }
