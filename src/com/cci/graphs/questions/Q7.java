@@ -7,16 +7,23 @@ import java.util.List;
 public class Q7 {
 
     public static void main(String[] args) {
+        Project f = new Project(2, "f", null);
 
-        Project project1 = new Project(1, "d", null);
+        Project a = new Project(1, "a", Arrays.asList(f));
 
-        Project project2 = new Project(1, "a", Arrays.asList(project1));
-        Project project3 = new Project(1, "b", Arrays.asList(project2));
+        Project b = new Project(1, "b", Arrays.asList(f));
+        Project d = new Project(1, "d", Arrays.asList(b, a));
+
+        Project c = new Project(0, "c", Arrays.asList(d));
+        Project e = new Project(0, "e", null);
 
         ArrayList<Project> projects = new ArrayList<>();
-        projects.add(project1);
-        projects.add(project2);
-        projects.add(project3);
+        projects.add(a);
+        projects.add(b);
+        projects.add(c);
+        projects.add(d);
+        projects.add(e);
+        projects.add(f);
 
         System.out.println(getBuildOrder((projects)));
 
@@ -31,10 +38,7 @@ public class Q7 {
         for (Project project : projects) {
             if (project.dependencies == 0) {
                 toBeProcessedProjects.add(project);
-                break;
             }
-
-
         }
 
         if (toBeProcessedProjects.size() == 0) {
