@@ -5,6 +5,13 @@ import java.util.List;
 
 public class Node {
 
+     public enum States {
+        COMPLETE, PARTIAL, BLANK;
+    }
+
+
+    public States state;
+
     public boolean isVisited() {
         return isVisited;
     }
@@ -103,5 +110,13 @@ public class Node {
             return true;
         }
         return false;
+    }
+
+    public States getState() {
+        return state;
+    }
+
+    public void setState(States state) {
+        this.state = state;
     }
 }

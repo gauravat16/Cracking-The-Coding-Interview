@@ -25,6 +25,7 @@ public class Graph implements IGraph {
     @Override
     public Node insert(Integer data) {
         Node nNode = new Node(data);
+        nNode.setState(Node.States.BLANK);
 
         if (null == getRoot()) {
             setRoot(nNode);
