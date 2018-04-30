@@ -4,8 +4,7 @@ import com.cci.trees.implemenation.BinarySearchTree;
 import com.cci.trees.implemenation.ITree;
 import com.cci.trees.implemenation.Node;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Q8 {
@@ -14,15 +13,17 @@ public class Q8 {
     public static void main(String[] args) {
         ITree binaryTree = new BinarySearchTree();
         binaryTree.insert(22);
-        binaryTree.insert(2);
         binaryTree.insert(32);
-        Node n2 = binaryTree.insert(12);
-        Node n1 =binaryTree.insert(21);
-        binaryTree.insert(98);
+        binaryTree.insert(31);
+      binaryTree.insert(45);
+
+
         binaryTree.insert(2);
-         binaryTree.insert(32);
-        binaryTree.insert(42);
-        binaryTree.insert(52);
+        binaryTree.insert(12);
+        binaryTree.insert(21);
+        binaryTree.insert(98);
+        Node n2 =  binaryTree.insert(42);
+        Node n1 = binaryTree.insert(52);
 
         System.out.println(getCommonAncestor(binaryTree.getRoot(), n1, n2));
 
@@ -34,55 +35,75 @@ public class Q8 {
             return null;
         }
 
-        Stack<Node> nodeQueueLeft = new Stack<>();
-        Stack<Node> nodeQueueRight = new Stack<>();
-        nodeQueueLeft.add(root);
-        nodeQueueRight.add(root);
+        Stack<Node> nodeStack1 = new Stack<>();
+        Stack<Node> nodeStack2 = new Stack<>();
 
-        getCommonPaths(root.getlChild(), n1, n2, nodeQueueLeft);
-        getCommonPaths(root.getrChild(), n1, n2, nodeQueueRight);
-
-        Node lastCommon = null;
-        while (nodeQueueLeft.size() > 0 || nodeQueueRight.size() > 0) {
-            Node right, left;
-
-            right = nodeQueueRight.pop();
-            left = nodeQueueLeft.pop();
-
-            if (right.equals(left)) {
-                lastCommon = right;
-            } else {
-                continue;
-            }
-
-
+        if (!hasNode(root, n1) || !hasNode(root, n2)) {
+            return null;
         }
 
-        return lastCommon;
+        boolean n1inLeft = hasNode(root.getlChild(), n1);
+        boolean n2inLeft = hasNode(root.getlChild(), n2);
+
+        if (n1inLeft != n2inLeft) {
+            return root;
+        }
+
+        if (n1inLeft && n2inLeft) {
+            getCommonPaths(root.getlChild(), n1, nodeStack1);
+            getCommonPaths(root.getlChild(), n2, nodeStack2);
+
+        } else {
+            getCommonPaths(root.getrChild(), n1, nodeStack1);
+            getCommonPaths(root.getrChild(), n2, nodeStack2);
+        }
+
+        Node lastStack1 = null, lastStack2 = null;
+
+        ArrayList<Node> nodes1 = new ArrayList<>(nodeStack1);
+        ArrayList<Node> nodes2 = new ArrayList<>(nodeStack2);
+
+
+      int minSize = (nodes1.size()<=nodes2.size())?nodes1.size():nodes2.size();
+
+      Node commonTillNow = null;
+      for (int i =0;i<minSize;i++){
+          if(nodes1.get(i).equals(nodes2.get(i))){
+              commonTillNow=nodes1.get(i);
+          }
+      }
+
+
+        return commonTillNow;
+
 
     }
 
 
-    public static Stack<Node> getCommonPaths(Node root, Node n1, Node n2, Stack<Node> nodeQueue) {
+    public static Stack<Node> getCommonPaths(Node root, Node n, Stack<Node> nodeStack) {
 
         if (null == root) {
 
-            return nodeQueue;
+            return nodeStack;
         }
 
 
-        nodeQueue.add(root);
+        nodeStack.add(root);
 
-        if (!(hasNode(root.getlChild(), n1) || hasNode(root.getrChild(), n1) || hasNode(root.getlChild(), n2) || hasNode(root.getrChild(), n2))) {
-
-            nodeQueue.pop();
+        if (root.equals(n)) {
+            return nodeStack;
         }
 
-        nodeQueue = getCommonPaths(root.getlChild(), n1, n2, nodeQueue);
+        if (!(hasNode(root.getlChild(), n) || hasNode(root.getrChild(), n))) {
 
-        nodeQueue = getCommonPaths(root.getrChild(), n1, n2, nodeQueue);
+            nodeStack.pop();
+        }
 
-        return nodeQueue;
+        nodeStack = getCommonPaths(root.getlChild(), n, nodeStack);
+
+        nodeStack = getCommonPaths(root.getrChild(), n, nodeStack);
+
+        return nodeStack;
     }
 
 
@@ -91,7 +112,7 @@ public class Q8 {
             return false;
         }
 
-        if (root == node) {
+        if (root.equals(node)) {
             return true;
         }
 
