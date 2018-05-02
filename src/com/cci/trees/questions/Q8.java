@@ -15,14 +15,12 @@ public class Q8 {
         binaryTree.insert(22);
         binaryTree.insert(32);
         binaryTree.insert(31);
-      binaryTree.insert(45);
-
-
+        binaryTree.insert(45);
         binaryTree.insert(2);
         binaryTree.insert(12);
         binaryTree.insert(21);
         binaryTree.insert(98);
-        Node n2 =  binaryTree.insert(42);
+        Node n2 = binaryTree.insert(42);
         Node n1 = binaryTree.insert(52);
 
         System.out.println(getCommonAncestor(binaryTree.getRoot(), n1, n2));
@@ -64,14 +62,14 @@ public class Q8 {
         ArrayList<Node> nodes2 = new ArrayList<>(nodeStack2);
 
 
-      int minSize = (nodes1.size()<=nodes2.size())?nodes1.size():nodes2.size();
+        int minSize = (nodes1.size() <= nodes2.size()) ? nodes1.size() : nodes2.size();
 
-      Node commonTillNow = null;
-      for (int i =0;i<minSize;i++){
-          if(nodes1.get(i).equals(nodes2.get(i))){
-              commonTillNow=nodes1.get(i);
-          }
-      }
+        Node commonTillNow = null;
+        for (int i = 0; i < minSize; i++) {
+            if (nodes1.get(i).equals(nodes2.get(i))) {
+                commonTillNow = nodes1.get(i);
+            }
+        }
 
 
         return commonTillNow;
