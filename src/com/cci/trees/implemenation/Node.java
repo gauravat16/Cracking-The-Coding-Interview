@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Node {
 
-     public enum States {
+    public enum States {
         COMPLETE, PARTIAL, BLANK;
     }
 
@@ -88,9 +88,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "data{" +
-                data +
-                '}';
+        return String.valueOf(data) ;
     }
 
     @Override
