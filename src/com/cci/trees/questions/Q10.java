@@ -28,11 +28,42 @@ public class Q10 {
 
 
         System.out.println(isSubTree(binaryTree, binaryTree2));
+        System.out.println(isSubTree(binaryTree.getRoot(), binaryTree2.getRoot()));
     }
 
 
     static boolean isSubTree(ITree tree1, ITree tree2) {
         return tree1.traverseTree(ITree.PRE_ORDER).contains(tree2.traverseTree(ITree.PRE_ORDER));
+    }
+
+
+    static boolean isSubTree(Node root1, Node root2) {
+
+        if (root1 == null) {
+            return true;
+        }
+
+        if (root1.equals(root2) && matchTrees(root1, root2)) {
+            return true;
+        }
+
+        return isSubTree(root1.getlChild(), root2) || isSubTree(root1.getrChild(), root2);
+
+    }
+
+
+    static boolean matchTrees(Node root1, Node root2) {
+        if (root1 == null && root2 == null) {
+            return true;
+        } else if (root1 == null || root2 == null) {
+            return false;
+        } else if (!root1.equals(root2)) {
+            return false;
+        }
+
+        return matchTrees(root1.getlChild(), root2.getlChild()) || matchTrees(root1.getrChild(), root2.getrChild());
+
+
     }
 
 
