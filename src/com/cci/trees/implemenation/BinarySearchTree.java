@@ -1,18 +1,26 @@
 package com.cci.trees.implemenation;
 
+import java.util.Random;
+
 public class BinarySearchTree implements ITree {
 
     Node root = null;
+
+    private static int TREE_SIZE;
 
     @Override
     public Node insert(Integer data, Node node) {
 
 
+
         if (node.data >= data) {
             if (node.lChild != null) {
                 node.setLeft_size(node.getLeft_size() + 1);
+
                 return insert(data, node.lChild);
             } else {
+                TREE_SIZE++;
+
                 node.lChild = new Node(data);
                 node.lChild.setParent(node);
                 node.setLeft_size(node.getLeft_size() + 1);
@@ -21,12 +29,21 @@ public class BinarySearchTree implements ITree {
             }
         } else {
             if (node.rChild != null) {
+
+                node.setRight_size(node.getRight_size() + 1);
+
                 return insert(data, node.rChild);
             } else {
+                TREE_SIZE++;
+
                 node.rChild = new Node(data);
                 node.rChild.setParent(node);
+                node.setRight_size(node.getRight_size() + 1);
+
                 return node.rChild;
             }
+
+
         }
 
 
@@ -299,6 +316,31 @@ public class BinarySearchTree implements ITree {
 
     }
 
+    public Node getRandomNode() {
+        return getRandomNode(getRoot());
+
+    }
+
+    public Node getRandomNode(Node node) {
+        if (node == null) {
+            return null;
+        }
+
+        Random random = new Random();
+
+        int index = random.nextInt(TREE_SIZE);
+
+        if (index < node.getLeft_size()) {
+            return getRandomNode(node.getlChild());
+        } else if (index == node.getLeft_size()) {
+            return node;
+        } else {
+            return getRandomNode(node.getrChild());
+        }
+
+    }
+
+
     public static void main(String[] args) {
         ITree binaryTree = new BinarySearchTree();
         binaryTree.insert(22);
@@ -312,17 +354,7 @@ public class BinarySearchTree implements ITree {
         binaryTree.insert(42);
         binaryTree.insert(52);
 
-        System.out.println(binaryTree.getRoot());
-
-        System.out.println(binaryTree.getRank(98));
-
-        System.out.println(binaryTree.search(ITree.BREADTH_FIRST, 52));
-
-        System.out.println(binaryTree.search(ITree.DEPTH_FIRST, 52));
-
-        System.out.println(binaryTree.traverseTree(IN_ORDER));
-        System.out.println(binaryTree.traverseTree(PRE_ORDER));
-        System.out.println(binaryTree.traverseTree(POST_ORDER));
+        System.out.println(((BinarySearchTree) binaryTree).getRandomNode());
 
     }
 

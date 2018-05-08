@@ -11,6 +11,7 @@ public class Node {
 
 
     public States state;
+    private int right_size;
 
     public boolean isVisited() {
         return isVisited;
@@ -88,7 +89,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return String.valueOf(data) ;
+        return String.valueOf(data);
     }
 
     @Override
@@ -116,5 +117,13 @@ public class Node {
 
     public void setState(States state) {
         this.state = state;
+    }
+
+    public int getRight_size() {
+        return right_size;
+    }
+
+    public void setRight_size(int right_size) {
+        this.right_size = right_size;
     }
 }
