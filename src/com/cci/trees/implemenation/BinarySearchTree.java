@@ -328,7 +328,7 @@ public class BinarySearchTree implements ITree {
 
         Random random = new Random();
 
-        int index = random.nextInt(TREE_SIZE);
+        int index = random.nextInt(node.getLeft_size()+node.getRight_size()+1);
 
         if (index < node.getLeft_size()) {
             return getRandomNode(node.getlChild());
@@ -354,7 +354,12 @@ public class BinarySearchTree implements ITree {
         binaryTree.insert(42);
         binaryTree.insert(52);
 
-        System.out.println(((BinarySearchTree) binaryTree).getRandomNode());
+
+        for (int i =0; i<100;i++){
+            System.out.print(((BinarySearchTree) binaryTree).getRandomNode()+"\t");
+
+        }
+
 
     }
 
