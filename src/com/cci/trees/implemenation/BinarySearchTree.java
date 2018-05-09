@@ -12,7 +12,6 @@ public class BinarySearchTree implements ITree {
     public Node insert(Integer data, Node node) {
 
 
-
         if (node.data >= data) {
             if (node.lChild != null) {
                 node.setLeft_size(node.getLeft_size() + 1);
@@ -321,6 +320,14 @@ public class BinarySearchTree implements ITree {
 
     }
 
+    public Node getRandomNodev2() {
+        Random random = new Random();
+
+        int index = random.nextInt(getRoot().getLeft_size() + getRoot().getRight_size() + 1);
+        return getIthNode(index, getRoot());
+
+    }
+
     public Node getRandomNode(Node node) {
         if (node == null) {
             return null;
@@ -328,7 +335,7 @@ public class BinarySearchTree implements ITree {
 
         Random random = new Random();
 
-        int index = random.nextInt(node.getLeft_size()+node.getRight_size()+1);
+        int index = random.nextInt(node.getLeft_size() + node.getRight_size() + 1);
 
         if (index < node.getLeft_size()) {
             return getRandomNode(node.getlChild());
@@ -336,6 +343,20 @@ public class BinarySearchTree implements ITree {
             return node;
         } else {
             return getRandomNode(node.getrChild());
+        }
+
+    }
+
+    public Node getIthNode(int index, Node node) {
+        if (node == null) {
+            return null;
+        }
+        if (index < node.getLeft_size()) {
+            return getIthNode(index, node.getlChild());
+        } else if (index == node.getLeft_size()) {
+            return node;
+        } else {
+            return getIthNode(index - (node.getLeft_size() + 1), node.getrChild());
         }
 
     }
@@ -355,8 +376,16 @@ public class BinarySearchTree implements ITree {
         binaryTree.insert(52);
 
 
-        for (int i =0; i<100;i++){
-            System.out.print(((BinarySearchTree) binaryTree).getRandomNode()+"\t");
+        for (int i = 0; i < 100; i++) {
+            System.out.print(((BinarySearchTree) binaryTree).getRandomNode() + "\t");
+
+
+
+        }
+
+        System.out.println();
+        for (int i = 0; i < 100; i++) {
+            System.out.print(((BinarySearchTree) binaryTree).getRandomNodev2() + "\t");
 
         }
 
